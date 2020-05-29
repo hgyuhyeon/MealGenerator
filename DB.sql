@@ -2,6 +2,7 @@
 
 SET foreign_key_checks = 0;
 DROP table IF EXISTS foodata;
+DROP table IF EXISTS material;
 SET foreign_key_checks = 1;
 
 CREATE table foodata (
@@ -10,6 +11,19 @@ CREATE table foodata (
     kcal int #칼로리
 ) ENGINE = InnoDB;
 
+CREATE table material (
+	category char(10), #분류
+	mname char(30), #이름
+    kcal int, #칼로리
+    chydrate int, #탄수화물 함량
+    protein int, #단백질 함량
+    fat int #지방 함량
+) ENGINE = InnoDB;
+
+
+
+#DB출처: https://m.blog.naver.com/PostView.nhn?blogId=yoous2923&logNo=220702822750&proxyReferer=http:%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D%26ved%3D2ahUKEwjZkJLg9s7pAhVSVN4KHWRVAakQFjAQegQIAhAB%26url%3Dhttp%253A%252F%252Fm.blog.naver.com%252Fyoous2923%252F220702822750%26usg%3DAOvVaw34NPzZZmR8dxBfes2bcALx
+#모든 음식은 1인분, 1개, 1포장 기준
 INSERT INTO foodata(category, fname, kcal)
 	VALUES('밥','흰쌀밥','300');
 INSERT INTO foodata(category, fname, kcal)
@@ -23,26 +37,83 @@ INSERT INTO foodata(category, fname, kcal)
 INSERT INTO foodata(category, fname, kcal)
 	VALUES('디저트','자몽에이드','70');
 
-SELECT * from foodata
-#참고: 별빛식당 20200525 ~ 20200529 가격: 5300원(조합원 4900원)
-#INSERT INTO category (rice, soup, sd1, sd2, sd3, sd4, kimchi, dessert, kcal) 
-#	VALUES('흰쌀밥', '어묵무국','파채불고기','오징어야채무침','야채계란찜',' ','배추김치','자두쿨피스','-1');
-#INSERT INTO category (rice, soup, sd1, sd2, sd3, sd4, kimchi, dessert, kcal) 
-#	VALUES('흰쌀밥', '계란파국','깐풍기','순대야채볶음','양상추샐러드/화이트소스',' ','배추김치','요구르트','-1');
-#INSERT INTO category (rice, soup, sd1, sd2, sd3, sd4, kimchi, dessert, kcal) 
-#	VALUES('흰쌀밥', '두부호박된장국','제육볶음','단호박&만두튀김/초간장','닭가슴살겨자채',' ','배추김치','복숭아쿨피스','-1');
-#INSERT INTO category (rice, soup, sd1, sd2, sd3, sd4, kimchi, dessert, kcal) 
-#	VALUES('흰쌀밥', '옥수수스프','찜닭','미트볼토마토스파게티','수제오이무피클',' ','배추김치','망고주스','-1');
- 
- #참고: 은하수식당 20200525~20200529 가격: 6000원(조합원 5000원)
-#INSERT INTO category (rice, soup, sd1, sd2, sd3, sd4, kimchi, dessert, kcal) 
-#	VALUES('찰수수밥', '팽이무국','소고기불고기','치커리샐러드&유자청소스','우엉채튀김','콩나물무침','포기김치','바나나','-1');
-#INSERT INTO category (rice, soup, sd1, sd2, sd3, sd4, kimchi, dessert, kcal) 
-#	VALUES('차조밥', '미역국','큐브스테이크','숙주부추무침/깨소스','셀러리피클','무생채','포기김치','무생채','-1');
-#INSERT INTO category (rice, soup, sd1, sd2, sd3, sd4, kimchi, dessert, kcal) 
-#	VALUES('보리밥', '계란파국','옛날닭튀김&칠리소스','쑥갓두부무침','무들깨가루볶음','부들어묵볶음','포기김치','바나나','-1');
-#INSERT INTO category (rice, soup, sd1, sd2, sd3, sd4, kimchi, dessert, kcal) 
-#	VALUES('비빔밥&고추장소스', '유부미소된장국',' ','포실포실찐감자','양상추샐러드&화이트소스',' ','열무김치','오렌지','-1');
-#INSERT INTO category (rice, soup, sd1, sd2, sd3, sd4, kimchi, dessert, kcal) 
-#	VALUES('검정쌀밥', '콩나물국','삼치무조림','애배추겉절이','상하이스파게티','고추장멸치볶음','포기김치','오렌지','-1');
- 
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('스프','쇠고기스프','25','0','0','0');
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('스프','쇠고기야채스프','50','25','0','25');
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('스프','양송이크림스프','75','25','0','25');
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('스프','크림스프','50','25','0','25');
+    
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('양정식','돈까스정식','500','175','100','225');
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('양정식','비후가스정식','450','175','100','175');
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('양정식','생선까스정식','300','125','50','125');
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('양정식','안심스테이크정식','650','250','150','250');
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('양정식','함박스테이크정식','575','175','125','300');
+    
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('과일','바나나','100','100','0','0');
+    
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('과일통조림','복숭아통조림(백도)','275','275','0','0');
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('과일통조림','','','','','');
+    
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('쨈','딸기쨈','50','50','0','0');
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('쨈','사과쨈','50','50','0','0');
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('쨈','포도쨈','50','50','0','0');
+
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('견과류','','','','','');
+
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('빵','','','','','');
+    
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('과자류','','','','','');
+    
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('생야채','','','','','');
+
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('유제품','','','','','');
+    
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('음료','','','','','');
+    
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('차','','','','','');
+    
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('주류','','','','','');
+    
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('시리얼','아몬드후레이크','375','275','25','50');
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('시리얼','콘푸로스트','350','325','25','0');
+    
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('조미료','','','','','');
+    
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('떡','','','','','');
+    
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('어육가공품','','','','','');
+    
+    
+    
+INSERT INTO material(category, mname, kcal, chydrate, protein, fat)
+	VALUES('','','','','','');
+    
+    
+SELECT * from material
