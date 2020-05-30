@@ -1,3 +1,5 @@
+## NOT AVAILABLE!!! ##
+
 import pymysql
 
 # 1. 데이터베이스 연결
