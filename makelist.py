@@ -12,11 +12,24 @@ def isfull(kcal): # 칼로리가 전부 찼는가?
         return False
 
 def getdata():
-    sql = "SELECT * FROM material WHERE category NOT IN ('주류','커피','떡','과자류') ORDER BY RAND() LIMIT 1"
+    sql = "SELECT * FROM material WHERE category NOT IN ('양정식','주류','커피','떡','과자류') ORDER BY RAND() LIMIT 1"
     curs.execute(sql)
     data = curs.fetchall()
 
     return data
+
+def gettime():
+    while (1):
+        command = input("원하는 식단(아침, 점심, 저녁, 전체): ")
+
+        if (command == "아침"):
+            return "아침"
+        elif (command == "점심"):
+            return "점심"
+        elif (command == "저녁"):
+            return "저녁"
+        else:
+            print("잘못된 입력")
 
 
 def convertdata(data):
@@ -37,9 +50,15 @@ class daily:
         self.kcal = 0
 
     def makedata(kcal):
+        catelist = []
         while(kcal <= 300):
             data = getdata()  # 데이터를 얻고
             l = convertdata(data)  # 그 데이터를 리스트로 변환하여
+
+            if str(l[0]).replace(" ", "") in catelist:
+                continue #같은 카테의 데이터가 있으면 continue
+
+            catelist.append(str(l[0].replace(" ","")))
             namelist.append(str(l[1].replace(" ", "")))  # 식단표 안에 음식이름 추가
             kcal += float(l[2].replace(" ", ""))
 
@@ -53,6 +72,12 @@ class daily:
         print("\n\n오늘의 랜덤식단!")
         daily.printonedaydata(self)
         #print(kcal)
+
+    def printonedada(time):
+        print(time)
+        one = daily.makedata(kcal)
+        print(one)
+        del one[:]
 
     def printonedaydata(self):
         for i in range(0, 3, 1):
@@ -70,16 +95,20 @@ class daily:
 
 class weekly:
     def makelist(self):
+        daylist = ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"]
         print("\n\n이번 주 랜덤식단!")
         for i in range(0, 7, 1):
+            print("\n"+daylist[i])
             daily.printonedaydata(self)
 
 class monthly:
     def makelist(self):
+        daylist = ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"]
         print("\n\n이번 달 랜덤식단!")
         for i in range(1, 5, 1):
-            print(str(i)+"주차")
+            print("\n\n"+str(i)+"주차")
             for j in range(0, 7, 1):
+                print("\n"+daylist[j])
                 daily.printonedaydata(self)
 
 if __name__ == "__main__":
@@ -89,29 +118,24 @@ if __name__ == "__main__":
     curs = con.cursor()
 
     while(1):
-        command = input("얻을 데이터(d: 일일, w: 주간, m: 월간, 입력값 없을 시 종료): ")
+        command = input("얻을 데이터(개별, 일일, 주간, 월간, 입력값 없을 시 종료): ")
         ##변수 선언##
         namelist = []  # 식단표 리스트
         kcal = 0
 
-        if(command == "d"):
+        if (command == "개별"):
+            time = gettime()
+            daily.printonedada(time)
+        elif(command == "일일"):
             daily.makelist("")
-        elif(command == "w"):
+        elif(command == "주간"):
             weekly.makelist("")
-        elif(command == "m"):
+        elif(command == "월간"):
            monthly.makelist("")
         elif(command == ""):
             break
         else:
             print("잘못된 입력")
-
-
-
-    #insert - 크롤링 데이터 insert
-    #sql = "INSERT INTO rice (fname, kcal) VALUES(%s,%s)"
-    #value = (str(name), str(kcal))
-    #curs.execute(sql, value)
-    #con.commit()
 
 
     # 5. 연결 끊기
