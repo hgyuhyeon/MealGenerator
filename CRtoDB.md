@@ -1,4 +1,4 @@
-# 크롤링 데이터들의 DB insert manual.
+# 크롤링 데이터의 DB insert manual.
 기타 자료형은 직접 말하기
 
 1. sql = "INSERT INTO (tablename) (foodname, kcal) VALUES(%s,%s)"
