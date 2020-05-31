@@ -2,9 +2,6 @@
 from tkinter import *
 import pymysql
 
-
-
-
 def isfull(kcal): # 칼로리가 전부 찼는가?
     if(kcal>300):
         return True
@@ -12,6 +9,9 @@ def isfull(kcal): # 칼로리가 전부 찼는가?
         return False
 
 def getdata():
+    # 필요한 추가조건: 쨈류는 빵류가 존재할 때 출현 가능하게 조정,
+    # 조미료는 '리스트에 들어온 음식에서 조미료를 요구하는가?'를 조건으로, 음식에 맞는 조미료 자동 추가
+    # 다이어트 식단이니 과일류는 필수 포함 등
     sql = "SELECT * FROM material WHERE category NOT IN ('양정식','주류','커피','떡','과자류') ORDER BY RAND() LIMIT 1"
     curs.execute(sql)
     data = curs.fetchall()
@@ -20,7 +20,7 @@ def getdata():
 
 def gettime():
     while (1):
-        command = input("원하는 식단(아침, 점심, 저녁, 전체): ")
+        command = input("원하는 식단(아침, 점심, 저녁): ")
 
         if (command == "아침"):
             return "아침"
@@ -138,5 +138,4 @@ if __name__ == "__main__":
             print("잘못된 입력")
 
 
-    # 5. 연결 끊기
     con.close()
