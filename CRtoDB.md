@@ -2,7 +2,7 @@
 기타 자료형은 직접 말하기
 
 1. sql = "INSERT INTO (tablename) (foodname, kcal) VALUES(%s,%s)"
-2. ## value = (str(name), str(kcal)) ## < 자료형별 수정 위치
+2. value = (str(name), str(kcal)) < 자료형별 수정 위치
 3. curs.execute(sql, value)
 4. con.commit()
 
