@@ -11,14 +11,17 @@
 value = (str(foodname), str(kcal))
 
 # for tuple
-#사용 모듈: tkinter
-#templist = list(tuple)  # 튜플을 리스트형으로 변환
-#string = " ".join(str(templist))  # 리스트를 /로 구분지어 문자열로 변환
-#l = string.split(",")  # 문자열을 다시 열이 구분된 리스트로 변환
+사용 모듈: tkinter
+templist = list(tuple)  # 튜플을 리스트형으로 변환
 
-#for j in range(0, 2, 1):
+string = " ".join(str(templist))  # 리스트를 /로 구분지어 문자열로 변환
+
+l = string.split(",")  # 문자열을 다시 열이 구분된 리스트로 변환
+
+for j in range(0, 2, 1):
     l[j] = re.sub('[][]', '', l[j])  # 리스트 값의 각종 특수기호들을 제거
-#value = (str(l[0]), str(l[1]))
+    
+value = (str(l[0]), str(l[1]))
 
 # for list
 value = (str(l[0]), str(l[1]))
