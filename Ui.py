@@ -4,10 +4,10 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import QDate, Qt
 from PyQt5 import uic
 
-form_window = uic.loadUiType("window.ui")[0]
-form_female = uic.loadUiType("female.ui")[0]
-form_body=uic.loadUiType("body.ui")[0]
-form_diet=uic.loadUiType("diet.ui")[0]
+form_window = uic.loadUiType("deui/window.ui")[0]
+form_female = uic.loadUiType("deui/female.ui")[0]
+form_body=uic.loadUiType("deui/body.ui")[0]
+form_diet=uic.loadUiType("deui/diet.ui")[0]
 
 class MyMainWindow(QMainWindow, form_window):
     def __init__(self):
