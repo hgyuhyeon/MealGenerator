@@ -14,7 +14,12 @@ for i in range(1, 279):
         my_title2 = soup.select(
             'div.list_wrap > ul > li:nth-child({})'.format(j) + '> div.info_area> div.subject > strong >a:nth-child(1)'
         )
+        my_title3 = soup.select(
+            'div.list_wrap > ul > li:nth-child({})'.format(j)+' > div > div:nth-child(3) > div > span:nth-child(3)'
+        )
         for title2 in my_title2:
             print(title2.text)
+        for title3 in my_title3:
+            print(title3.text)
         for title in my_titles:
             print(title.text)
