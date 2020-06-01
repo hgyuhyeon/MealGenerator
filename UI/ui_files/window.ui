@@ -32,10 +32,11 @@
      <widget class="QPushButton" name="female">
       <property name="styleSheet">
        <string notr="true">font: 14pt &quot;함초롬바탕&quot;;
-background-color: rgb(255, 255, 255);</string>
+background-color: rgb(255, 255, 255);
+</string>
       </property>
       <property name="text">
-       <string>여성 건강 식단</string>
+       <string>단백질 특화 식단</string>
       </property>
      </widget>
     </item>
@@ -46,7 +47,7 @@ background-color: rgb(255, 255, 255);</string>
 background-color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
-       <string>신체 건강 식단</string>
+       <string>지방 제로 식단</string>
       </property>
      </widget>
     </item>
@@ -57,7 +58,7 @@ background-color: rgb(255, 255, 255);</string>
 background-color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
-       <string>다이어트 식단</string>
+       <string>일반 식단</string>
       </property>
      </widget>
     </item>
