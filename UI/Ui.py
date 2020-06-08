@@ -4,10 +4,14 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import QDate, Qt
 from PyQt5 import uic
 
-form_window = uic.loadUiType("ui_files/window.ui")[0]
-form_female = uic.loadUiType("ui_files/female.ui")[0]
-form_body=uic.loadUiType("ui_files/body.ui")[0]
-form_diet=uic.loadUiType("ui_files/diet.ui")[0]
+import pymysql
+from openpyxl import workbook
+from openpyxl import load_workbook
+
+form_window = uic.loadUiType("window.ui")[0]
+form_female = uic.loadUiType("protein.ui")[0]
+form_body=uic.loadUiType("fat.ui")[0]
+form_diet=uic.loadUiType("normal.ui")[0]
 
 class MyMainWindow(QMainWindow, form_window):
     def __init__(self):
