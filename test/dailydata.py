@@ -16,7 +16,7 @@ class daily:
 
     def getdata(self):
         ##connect to server##
-        con = pymysql.connect(host='localhost', user='user',
+        con = pymysql.connect(host='DESKTOP-13RIOQ2', user='user',
                               password='123456**', db='foods', charset='utf8')
         curs = con.cursor()
         sql = "SELECT * FROM nutrient ORDER BY RAND() LIMIT 1"
@@ -41,7 +41,7 @@ class daily:
     def makedata(self):
 
         for i in range(0, 5, 1):
-            if(self.kcal >= 800):
+            if(self.kcal >= 700):
                 break
             data = daily.getdata(self)  # 데이터를 얻고
             l = daily.convertdata(data)  # 그 데이터를 리스트로 변환하여
@@ -62,14 +62,48 @@ class daily:
         self.nutlist.append(self.carbohydrate)
 
 
+
+
 def makefoodata(food):
     food.makedata()
     sys.stdout.flush()
+    #print("메뉴: ")
+    #for i in range(len(food.namelist)):
+    #    print(food.namelist[i])  # 메뉴 출력
+
+    #print('칼로리(kcal): ' + str(food.nutlist[0]))
+    #print('탄수화물: ' + str(food.nutlist[3]))
+    #print('단백질: ' + str(food.nutlist[1]))
+    #print('지방: ' + str(food.nutlist[2]))
+
+    window = Tk()
+    window.geometry("450x100")
+    window.title("식단표")
+
     print("메뉴: ")
+    label1 = Label(window, text="메뉴", font=("돋음", 13), fg="black")
+
+    label1.pack()
+
     for i in range(len(food.namelist)):
         print(food.namelist[i])  # 메뉴 출력
+        label6 = Label(window, text = str(food.namelist[i]), font = ("돋음", 13), fg = "black")
+        label6.pack()
+
+    label2 = Label(window, text = '칼로리(kcal): ' + str(food.nutlist[0]), font = ("돋음", 10), fg = "black")
+    label3 = Label(window, text = '탄수화물: ' + str(food.nutlist[3]), font = ("돋음", 10), fg = "black")
+    label4 = Label(window, text = '단백질: ' + str(food.nutlist[1]), font = ("돋음", 10), fg = "black")
+    label5 = Label(window, text = '지방: ' + str(food.nutlist[2]), font = ("돋음", 10), fg = "black")
+
+    label2.pack()
+    label3.pack()
+    label4.pack()
+    label5.pack()
+
 
     print('칼로리(kcal): ' + str(food.nutlist[0]))
     print('탄수화물: ' + str(food.nutlist[3]))
     print('단백질: ' + str(food.nutlist[1]))
     print('지방: ' + str(food.nutlist[2]))
+
+    window.mainloop()
