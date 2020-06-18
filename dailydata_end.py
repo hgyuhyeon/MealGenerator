@@ -16,8 +16,8 @@ class daily:
 
     def getdata(self):
         ##connect to server##
-        con = pymysql.connect(host='localhost', user='root',
-                              password='042967', db='foods', charset='utf8')
+        con = pymysql.connect(host='DESKTOP-13RIOQ2', user='user',
+                              password='123456**', db='foods', charset='utf8')
         curs = con.cursor()
         sql = "SELECT * FROM nutrient ORDER BY RAND() LIMIT 1"
         curs.execute(sql)
